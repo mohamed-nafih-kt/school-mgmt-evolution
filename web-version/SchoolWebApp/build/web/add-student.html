@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Student</title>
+    <link rel="stylesheet" href="add-student.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-brand">Add Student</div>
+        <ul class="navbar-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <h2>Add Student</h2>
+      <form class="student-form" action="registerAction.jsp" method="post">
+        <label for="adm_num">Admission Number</label>
+        <input type="text" id="adm_num" name="adm_num" placeholder="Auto Generated" readonly />
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="class">Class</label>
+        <input type="text" id="class" name="class" required />
+
+        <label for="place">Place</label>
+        <input type="text" id="place" name="place" required />
+
+        <label for="contact">Contact</label>
+        <input type="text" id="contact" name="contact" required />
+
+        <button type="submit">Add Student</button>
+      </form>
+    </div>
+  </body>
+</html>
