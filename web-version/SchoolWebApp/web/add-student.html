@@ -18,10 +18,12 @@
     </header>
     <div class="container">
       <h2>Add Student</h2>
-      <form class="student-form" action="registerAction.jsp" method="post">
-        <label for="adm_num">Admission Number</label>
+      <form class="student-form" action="StudentController.jsp" method="post">
+        <!-- form submitted as action: add -->
+        <input type="hidden" name="action" value="add" />
+          
+        <label for="adm_num">Admission Number</label>        
         <input type="text" id="adm_num" name="adm_num" placeholder="Auto Generated" readonly />
-
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required />
 
