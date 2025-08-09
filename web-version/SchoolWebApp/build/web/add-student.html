@@ -8,11 +8,17 @@
   <body>
     <header>
       <nav class="navbar">
-        <div class="navbar-brand">Add Student</div>
+        <a href="./index.html" class="navbar-brand">School Management</a>
         <ul class="navbar-links">
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Contact</a></li>
+          <li>
+            <span>Manage Students &#9660;</span>
+            <ul>
+              <li><a href="add-student.html">Add</a></li>
+              <li><a href="./remove-student.html">Remove</a></li>
+            </ul>
+          </li>
+          <li><a href="./search-student.html">Search Student</a></li>
+          <li><a href="./list-students.html">List Students</a></li>
         </ul>
       </nav>
     </header>
@@ -21,9 +27,15 @@
       <form class="student-form" action="StudentController.jsp" method="post">
         <!-- form submitted as action: add -->
         <input type="hidden" name="action" value="add" />
-          
-        <label for="adm_num">Admission Number</label>        
-        <input type="text" id="adm_num" name="adm_num" placeholder="Auto Generated" readonly />
+
+        <label for="adm_num">Admission Number</label>
+        <input
+          type="text"
+          id="adm_num"
+          name="adm_num"
+          placeholder="Auto Generated"
+          readonly
+        />
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required />
 

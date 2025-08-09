@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Student</title>
+    <link rel="stylesheet" href="search-student.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="./index.html" class="navbar-brand">School Management</a>
+        <ul class="navbar-links">
+          <li>
+            <span>Manage Students &#9660;</span>
+            <ul>
+              <li><a href="add-student.html">Add</a></li>
+              <li><a href="./remove-student.html">Remove</a></li>
+            </ul>
+          </li>
+          <li><a href="./search-student.html">Search Student</a></li>
+          <li><a href="./list-students.html">List Students</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <div class="header">
+          <h1>SEARCH STUDENT</h1>
+        </div>
+        <div class="search-section">
+          <div class="search-selection">
+            <label>search by</label>
+            <select id="search-by">
+              <option>Name</option>
+              <option>Admission Number</option>
+            </select>
+          </div>
+          <div class="search-bar">
+            <input type="text" value="" />
+            <button class="search-button"></button>
+          </div>
+        </div>
+        <div class="main-content">
+          <div class="search-results">
+            <p>Search Results</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Adm no.</th>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Ajmal</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Manoj</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Kumaran</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Aswin</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Jaison</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>Anoop</td>
+                </tr>
+                <tr>
+                  <td>13</td>
+                  <td>Arya</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="student-details">
+            <div class="detail-group">
+              <label>Name</label>
+              <input type="text" readonly />
+            </div>
+            <div class="detail-group-row">
+              <div class="detail-group small">
+                <label>Adm No.</label>
+                <input type="text" readonly />
+              </div>
+              <div class="detail-group small">
+                <label>Class</label>
+                <input type="text" readonly />
+              </div>
+            </div>
+            <div class="detail-group">
+              <label>Place</label>
+              <input type="text" readonly />
+            </div>
+            <div class="detail-group">
+              <label>Contact</label>
+              <input type="text" readonly />
+            </div>
+          </div>
+          <div class="grid-item-3rd-column">
+            <div class="profile-pic-container">
+              <img
+                src="../../src/resources/icons8-customer-100.png"
+                alt="profile photo"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
