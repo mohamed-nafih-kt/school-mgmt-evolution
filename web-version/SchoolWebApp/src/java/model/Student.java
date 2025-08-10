@@ -2,7 +2,7 @@
 package model;
 
 public class Student {
-    private int adm_num;
+    private int admNum;
     private String name;
     private String clas;
     private String place;
@@ -10,12 +10,12 @@ public class Student {
     
 
     public int getAdmNum() {
-        return adm_num;
+        return admNum;
     }
 
 
     public void setAdmNum(int userId) {
-        this.adm_num = userId;
+        this.admNum = userId;
     }
 
 

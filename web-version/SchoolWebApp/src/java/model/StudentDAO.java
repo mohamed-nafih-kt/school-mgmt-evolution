@@ -9,18 +9,45 @@ import java.util.ArrayList;
 public class StudentDAO {
     static MakeConnection mc = new MakeConnection();
     
+    // index page functions
     public int getTotalStudents(){
         try(
-            PreparedStatement ps = mc.setConnection().prepareStatement("");
+            PreparedStatement ps = mc.setConnection().prepareStatement("SELECT COUNT(*) FROM students");
                 ){
             ResultSet rs = ps.executeQuery();
             if(rs.next())return rs.getInt(1);
             return 0;
-    }catch(Exception e){
-        System.out.println(e.getMessage());
-        return 0;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }        
     }
-        
+        public int[] getAttendance(){
+        int[] arr = new int[3];
+        PreparedStatement ps;
+        ResultSet rs;
+        try{
+            ps = mc.setConnection().prepareStatement("SELECT COUNT(*) FROM attendance WHERE status=1");
+            rs = ps.executeQuery();
+            int i =0;
+            rs.next();
+            arr[i]=rs.getInt(1);
+
+            ps = mc.setConnection().prepareStatement("SELECT COUNT(*) FROM attendance WHERE status=0");
+            rs = ps.executeQuery();
+            i ++;
+            rs.next();
+            arr[i]=rs.getInt(1);
+            
+            ps = mc.setConnection().prepareStatement("SELECT COUNT(*) FROM students AS s LEFT JOIN attendance AS a ON s.adm_num = a.adm_num WHERE a.adm_num IS NULL");
+            rs = ps.executeQuery();
+            i ++;
+            rs.next();
+            arr[i]=rs.getInt(1);    
+        }catch(SQLException e){
+            System.out.println("couldn't update attendance");
+        }
+        return arr;
     }
     
     public int addStudent(String name,String clas,String place, String contact){
@@ -43,7 +70,7 @@ public class StudentDAO {
     
     // new functions based on Student (entity) & propAction (controller) | MVC architecture
     
-    public int removeStudents(int admNum){
+    public int removeStudent(int admNum){
         try(
             PreparedStatement ps = mc.setConnection().prepareStatement("DELETE FROM students WHERE adm_num = "+ admNum);
                 ){
@@ -58,7 +85,8 @@ public class StudentDAO {
             return 0;
         }
     }
-      
+    
+    // list student functions
     public ArrayList<Student> getListByClass(String cls) {
         ArrayList<Student> studentList = new ArrayList();
         Student s = new Student();
@@ -134,6 +162,7 @@ public class StudentDAO {
         return studentList;
     }
     
+    //search students functions
     public ArrayList<Student> searchStudentByName(String name){
         ArrayList<Student> students = new ArrayList<>();
         Student s = new Student();
@@ -184,40 +213,6 @@ public class StudentDAO {
             }
         return students;
     }
-        
-    public int[] getAttendance(){
-        int[] arr = new int[3];
-        Connection con = mc.setConnection();
-        try{
-            
-            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM attendance WHERE status=1");
-            ResultSet rs = ps.executeQuery();
-            int i =0;
-            rs.next();
-            arr[i]=rs.getInt(1);
-
-            ps = con.prepareStatement("SELECT COUNT(*) FROM attendance WHERE status=0");
-            rs = ps.executeQuery();
-            i ++;
-            rs.next();
-            arr[i]=rs.getInt(1);
-            
-            ps = con.prepareStatement("SELECT COUNT(*) FROM students AS s LEFT JOIN attendance AS a ON s.adm_num = a.adm_num WHERE a.adm_num IS NULL");
-            rs = ps.executeQuery();
-            i ++;
-            rs.next();
-            arr[i]=rs.getInt(1);    
-        }catch(SQLException e){
-            System.out.println("couldn't update attendance");
-        }
-        finally{
-            try {
-                con.close();
-            } catch (Exception ex) {
-                System.out.println("Error: getAttendance");
-            }
-            return arr;
-        }
-    }
+     
     
 }

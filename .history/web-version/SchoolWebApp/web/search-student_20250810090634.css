@@ -185,7 +185,7 @@ section {
 }
 
 .search-button {
-  background-image: url(./resources/icons8-search-30-2.png);
+  background-image: url(../../src/resources/icons8-search-30-2.png);
   background-repeat: no-repeat;
   height: 30px;
   width: 30px;

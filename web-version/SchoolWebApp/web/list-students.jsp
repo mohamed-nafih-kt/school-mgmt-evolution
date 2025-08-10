@@ -9,17 +9,17 @@
   <body>
     <header>
       <nav class="navbar">
-        <a href="./index.html" class="navbar-brand">School Management</a>
+        <a href="StudentController.jsp?action=home" class="navbar-brand">School Management</a>
         <ul class="navbar-links">
           <li>
             <span>Manage Students &#9660;</span>
             <ul>
-              <li><a href="add-student.html">Add</a></li>
-              <li><a href="./remove-student.html">Remove</a></li>
+              <li><a href="add-student.jsp">Add</a></li>
+              <li><a href="remove-student.jsp">Remove</a></li>
             </ul>
           </li>
-          <li><a href="./search-student.html">Search Student</a></li>
-          <li><a href="./list-students.html">List Students</a></li>
+          <li><a href="search-student.jsp">Search Student</a></li>
+          <li><a href="list-students.jsp">List Students</a></li>
         </ul>
       </nav>
     </header>

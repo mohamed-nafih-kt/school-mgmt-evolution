@@ -11,96 +11,135 @@
         return;
     }
     switch(action){
+        case "home":{
+            int totalStudents = studentDAO.getTotalStudents();
+            int[] arr = studentDAO.getAttendance();
+            request.setAttribute("totalCount",totalStudents);
+            request.setAttribute("present",arr[0]);
+            request.setAttribute("absent",arr[1]);
+            request.setAttribute("unmarked",arr[2]);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+            System.out.println("fetched total count succesfully. Total students ="+totalStudents);
+            return;
+        }
         case "add": {
             String  name = request.getParameter("name");
             String clas = request.getParameter("class");
             String place = request.getParameter("place");
             String contact = request.getParameter("contact");
             int res = studentDAO.addStudent(name,clas,place, contact);
-            response.sendRedirect("add-student.html");
+            response.sendRedirect("add-student.jsp");
             break; }
-        case "remove":{
-            String admNum = request.getParameter("adm_num");
+            
+        case "searchToRemove":{
+            List<Student> students;
+            String admNum = request.getParameter("admNum");
             if (admNum == null || admNum.isEmpty()) {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing admission number");
+                request.setAttribute("errorMessage", "Type a Valid Admission Number");
+                request.getRequestDispatcher("remove-student.jsp").forward(request, response);
                 return;
             }
-            try {
-                int removeResult = studentDAO.removeStudents(Integer.parseInt(admNum));
-                response.sendRedirect("list-students.jsp");
-            } catch (NumberFormatException e) {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid admission number format");
-            }
-            break;}
-        case "edit": {
-            // Edit Student: update details based on adm_num (primary key)
-            String admNum = request.getParameter("adm_num");
-            String name = request.getParameter("name");
-            String clas = request.getParameter("class");
-            String place = request.getParameter("place");
-            String contact = request.getParameter("contact");
-
-            if (admNum == null || admNum.isEmpty()) {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing admission number");
-                return;
-            }
-
-            try {
-                int admNumber = Integer.parseInt(admNum);
-                int updateResult = studentDAO.editStudentDetails(admNumber, name, clas, place, contact);
-                response.sendRedirect("list-students.jsp");
-            } catch (NumberFormatException e) {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid admission number format");
+           else{
+                try {
+                    students = studentDAO.searchStudentById(admNum);
+                    if(students.isEmpty()){
+                    request.setAttribute("errorMessage", "No student exist");
+                    request.getRequestDispatcher("remove-student.jsp").forward(request, response);
+                    return;
+                    }
+                    Student student = students.get(0);
+                    request.setAttribute("Student", student);
+                    request.getRequestDispatcher("remove-student.jsp").forward(request, response);
+                    
+                } catch (NumberFormatException e) {
+                    request.setAttribute("errorMessage", "Couldn't fetch results");
+                    request.getRequestDispatcher("remove-student.jsp").forward(request, response);
+                    return;
+                }
             }
             break;
+            
         }
-        case "get": {
+        case "remove":{
+            String admNum = request.getParameter("admNum");
+            try {
+                int removeResult = studentDAO.removeStudent(Integer.parseInt(admNum));
+                if(removeResult <= 0){
+                    request.setAttribute("errorMessage", "Could not Remove the Student");
+                    request.getRequestDispatcher("remove-student.jsp").forward(request, response);
+                }
+                else response.sendRedirect("remove-student.jsp?success=1");
+            } 
+            catch (NumberFormatException e) {
+                request.setAttribute("errorMessage", "Invalid admission number format.");
+                request.getRequestDispatcher("remove-student.jsp").forward(request, response);
+            }
+            break;}
+//        case "edit": {
+//            String admNum = request.getParameter("adm_num");
+//            String name = request.getParameter("name");
+//            String clas = request.getParameter("class");
+//            String place = request.getParameter("place");
+//            String contact = request.getParameter("contact");
+//
+//            if (admNum == null || admNum.isEmpty()) {
+//                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing admission number");
+//                return;
+//            }
+//
+//            try {
+//                int admNumber = Integer.parseInt(admNum);
+//                int updateResult = studentDAO.editStudentDetails(admNumber, name, clas, place, contact);
+//                response.sendRedirect("list-students.jsp");
+//            } catch (NumberFormatException e) {
+//                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid admission number format");
+//            }
+//            break;
+//        }
+        case "search": {
+            
             // Fetch single student details by adm_num or by filters (name/place)
             String admNum = request.getParameter("adm_num");
             String name = request.getParameter("name");
             String place = request.getParameter("place");
-
-            Student student = null;
+            List<Student> students;
 
             if (admNum != null && !admNum.isEmpty()) {
                 try {
-                    int admNumber = Integer.parseInt(admNum);
-                    student = studentDAO.getStudentDetails(admNumber);
+                    students = studentDAO.searchStudentById(admNum);
                 } catch (NumberFormatException e) {
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid admission number format");
                     return;
                 }
             } else if (name != null && !name.isEmpty()) {
-                student = studentDAO.getStudentDetailsByName(name);
-            } else if (place != null && !place.isEmpty()) {
-                student = studentDAO.getStudentDetailsByPlace(place);
-            } else {
+                    students = studentDAO.searchStudentByName(name);
+            }else {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing search parameter");
                 return;
             }
 
-            if (student == null) {
+            if (students == null) {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Student not found");
                 return;
             }
 
-            request.setAttribute("student", student);
+            request.setAttribute("student", students);
             request.getRequestDispatcher("view-student.jsp").forward(request, response);
             break;
         }
 
         case "list": {
-            // List students optionally filtered by place or name
+            
             String place = request.getParameter("place");
             String name = request.getParameter("name");
             List<Student> students;
 
             if (place != null && !place.isEmpty()) {
-                students = studentDAO.listStudentsByPlace(place);
+                students = studentDAO.getListByPlace(place);
             } else if (name != null && !name.isEmpty()) {
-                students = studentDAO.listStudentsByName(name);
+                students = studentDAO.getListByClass(name);
             } else {
-                students = studentDAO.listAllStudents();
+                students = studentDAO.getAllList();
             }
 
             request.setAttribute("students", students);
@@ -110,7 +149,7 @@
 
         case "totalCount": {
             // Get total count of students
-            int totalCount = studentDAO.getTotalCount();
+            int totalCount = studentDAO.getTotalStudents();
             request.setAttribute("totalCount", totalCount);
             request.getRequestDispatcher("student-stats.jsp").forward(request, response);
             break;

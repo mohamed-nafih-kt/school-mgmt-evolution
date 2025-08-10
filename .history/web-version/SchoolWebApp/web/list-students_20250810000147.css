@@ -113,16 +113,17 @@ body {
 section {
   display: flex;
   background-color: var(--primary-color);
-  height: 100vh;
+  height: 90vh;
+  width: 100%;
   align-items: center;
   justify-content: center;
 }
 .container {
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  grid-template-rows: auto auto 1fr;
+  width: 60%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
-  max-width: 1000px;
   margin: auto;
   background-color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
@@ -131,7 +132,6 @@ section {
 }
 
 .header {
-  grid-column: 1 / -1;
   background-color: var(--bold-color);
   color: white;
   padding: 10px 20px;
@@ -140,8 +140,9 @@ section {
   border-radius: 10px 10px 0 0;
 }
 
+/* Search Section */
+
 .search-section {
-  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -185,7 +186,7 @@ section {
 }
 
 .search-button {
-  background-image: url(./resources/icons8-search-30-2.png);
+  background-image: url(../../src/resources/icons8-search-30-2.png);
   background-repeat: no-repeat;
   height: 30px;
   width: 30px;
@@ -193,24 +194,23 @@ section {
 }
 .search-button:hover {
   background-color: var(--bold-color);
-  background-image: url(./resources/icons8-search-30.png);
+  background-image: url(../../src/resources/icons8-search-30.png);
   cursor: pointer;
 }
-
+/* Search Section  Closed */
 .main-content {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
-  padding: 0 20px 20px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-results {
+  width: 80%;
   background-color: white;
   border: 1px solid #ddd;
   padding: 10px;
-  grid-row: 1 / 2;
-  grid-column: 1/2;
+  margin-bottom: 20px;
 }
 
 .search-results p {
@@ -225,7 +225,7 @@ section {
 
 .search-results table {
   width: 100%;
-  border-collapse: collapse;
+  overflow: scroll;
 }
 
 .search-results th,
@@ -237,57 +237,4 @@ section {
 
 .search-results tr:hover {
   background-color: #e6e6e6;
-}
-
-.student-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  grid-column: 2/3;
-}
-
-.detail-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.detail-group label {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 3px;
-}
-
-.detail-group input {
-  padding: 8px;
-  height: 20px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  background-color: #f0f0f0;
-}
-
-.detail-group-row {
-  display: flex;
-  gap: 10px;
-}
-
-.detail-group.small {
-  flex: 1;
-}
-
-.grid-item-3rd-column {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 3/4;
-}
-
-.profile-pic-container {
-  height: 15rem;
-  width: 12rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  border: 1px solid gray;
-  padding: 10px;
 }
