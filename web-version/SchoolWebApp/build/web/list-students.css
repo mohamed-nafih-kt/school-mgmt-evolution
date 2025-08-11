@@ -152,6 +152,7 @@ section {
 
 .search-selection {
   display: flex;
+  width: 100px; 
   align-items: center;
   border-radius: 5px;
   overflow: hidden;
@@ -166,6 +167,7 @@ section {
 
 .search-selection select {
   height: 30px;
+  width: 100px;
   border: none;
   padding: 8px;
   font-size: 1em;
@@ -201,6 +203,7 @@ section {
 .main-content {
   display: flex;
   width: 100%;
+  height: 400px;
   align-items: center;
   justify-content: center;
 }
@@ -225,7 +228,6 @@ section {
 
 .search-results table {
   width: 100%;
-  overflow: scroll;
 }
 
 .search-results th,
@@ -235,6 +237,22 @@ section {
   border-bottom: 1px solid #ddd;
 }
 
-.search-results tr:hover {
+.search-results tbody tr:hover {
   background-color: #e6e6e6;
+}
+.search-results thead{
+   display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.search-results tbody{
+  display: block;
+  height: 320px;
+  overflow-y: auto;
+  width: 100%;
+}
+.search-results tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }

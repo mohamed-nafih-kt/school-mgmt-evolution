@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+<jsp:useBean id="student" class="model.Student"/>
+<% java.util.ArrayList al = (java.util.ArrayList) request.getAttribute("students"); %>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search Student</title>
-    <link rel="stylesheet" href="search-student.css" />
+    <link rel="stylesheet" href="search-student.css?12" />
   </head>
   <body>
     <header>
@@ -28,19 +30,20 @@
         <div class="header">
           <h1>SEARCH STUDENT</h1>
         </div>
-        <div class="search-section">
+        <form class="search-section" action="StudentController.jsp" method="GET">
+            <input name="action" value="search"type="hidden"/>
           <div class="search-selection">
             <label>search by</label>
-            <select id="search-by">
-              <option>Name</option>
-              <option>Admission Number</option>
+            <select id="search-by" name="option">
+              <option values="Name" ${param["search-by"] == "Name"? 'selected':''}>Name</option>
+              <option value="Admission Number" ${param["search-by"] == "Admission Number"? 'selected':''}>Admission Number</option>
             </select>
           </div>
           <div class="search-bar">
-            <input type="text" value="" />
-            <button class="search-button"></button>
+            <input type="text" value="${param.inputValue}" name="inputValue"/>
+            <button class="search-button" type="submit"></button>
           </div>
-        </div>
+        </form>
         <div class="main-content">
           <div class="search-results">
             <p>Search Results</p>
@@ -52,59 +55,41 @@
                 </tr>
               </thead>
               <tbody>
+                <% 
+                   if(al!=null){ 
+                    for(int i = 0;i< al.size();i++ ){ 
+                    student =(model.Student) al.get(i);%>
                 <tr>
-                  <td>1</td>
-                  <td>Ajmal</td>
+                    <td> <%= student.getAdmNum()%> </td>
+                    <td> <%= student.getName() %> </td>
                 </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Manoj</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Kumaran</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Aswin</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>Jaison</td>
-                </tr>
-                <tr>
-                  <td>12</td>
-                  <td>Anoop</td>
-                </tr>
-                <tr>
-                  <td>13</td>
-                  <td>Arya</td>
-                </tr>
+                <% }
+                        } %> 
               </tbody>
             </table>
           </div>
           <div class="student-details">
             <div class="detail-group">
               <label>Name</label>
-              <input type="text" readonly />
+              <input type="text" value="${students[0].name}"  readonly />
             </div>
             <div class="detail-group-row">
               <div class="detail-group small">
                 <label>Adm No.</label>
-                <input type="text" readonly />
+                <input type="text" value="${students[0].admNum}" readonly />
               </div>
               <div class="detail-group small">
                 <label>Class</label>
-                <input type="text" readonly />
+                <input type="text"  value="${students[0].clas}" readonly />
               </div>
             </div>
             <div class="detail-group">
               <label>Place</label>
-              <input type="text" readonly />
+              <input type="text" value="${students[0].place}" readonly />
             </div>
             <div class="detail-group">
               <label>Contact</label>
-              <input type="text" readonly />
+              <input type="text" value="${students[0].contact}" readonly />
             </div>
           </div>
           <div class="grid-item-3rd-column">

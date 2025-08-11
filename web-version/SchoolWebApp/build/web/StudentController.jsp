@@ -99,49 +99,63 @@
         case "search": {
             
             // Fetch single student details by adm_num or by filters (name/place)
-            String admNum = request.getParameter("adm_num");
-            String name = request.getParameter("name");
-            String place = request.getParameter("place");
-            List<Student> students;
+            String option = request.getParameter("option");
+            String input = request.getParameter("inputValue");
+            List<Student> students = null;
+            
+            if (option == null || input == null || input.isEmpty()) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing search parameters");
+                return;
+            }
 
-            if (admNum != null && !admNum.isEmpty()) {
+
+            if (option.equals("Name")) {
                 try {
-                    students = studentDAO.searchStudentById(admNum);
-                } catch (NumberFormatException e) {
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid admission number format");
+                    students = studentDAO.searchStudentByName(input);
+                    System.out.println("student name= "+ students.get(1).getName());
+                    request.setAttribute("students", students);
+                    request.getRequestDispatcher("search-student.jsp").forward(request, response);
+                    return;
+                    
+                } catch (Exception e) {
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Name format");
                     return;
                 }
-            } else if (name != null && !name.isEmpty()) {
-                    students = studentDAO.searchStudentByName(name);
-            }else {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing search parameter");
-                return;
+            } else if (option.equals("Admission Number")) {
+            try{
+                    students = studentDAO.searchStudentById(input); 
+                    
+                    request.setAttribute("students", students);
+                    request.getRequestDispatcher("search-student.jsp").forward(request, response);
+                    return;
+            }catch(Exception e){
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Id format");
+                return;}
             }
 
             if (students == null) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Student not found");
+                System.out.println("student not found");
                 return;
             }
-
-            request.setAttribute("student", students);
-            request.getRequestDispatcher("view-student.jsp").forward(request, response);
+            
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST,"Unknown Error");
             break;
         }
 
         case "list": {
-            
-            String place = request.getParameter("place");
-            String name = request.getParameter("name");
-            List<Student> students;
-
-            if (place != null && !place.isEmpty()) {
-                students = studentDAO.getListByPlace(place);
-            } else if (name != null && !name.isEmpty()) {
-                students = studentDAO.getListByClass(name);
-            } else {
+            String option = request.getParameter("option");
+            String input = request.getParameter("inputValue");
+            List<Student> students = null;
+            if (!option.equals("All")) {
+                if(option.equals("Class")){
+                    students = studentDAO.getListByClass(input);            
+                }else if(option.equals("Place")){
+                    students = studentDAO.getListByPlace(input);
+                }                
+            }
+            else {
                 students = studentDAO.getAllList();
             }
-
             request.setAttribute("students", students);
             request.getRequestDispatcher("list-students.jsp").forward(request, response);
             break;

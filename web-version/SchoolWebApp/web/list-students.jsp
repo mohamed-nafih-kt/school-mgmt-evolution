@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+<jsp:useBean id="student" class="model.Student"/>
+<%
+        java.util.ArrayList al=(java.util.ArrayList)request.getAttribute("students");
+    
+    %>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search Student</title>
-    <link rel="stylesheet" href="list-students.css" />
+    <link rel="stylesheet" href="list-students.css?123" />
   </head>
   <body>
     <header>
@@ -28,19 +33,21 @@
         <div class="header">
           <h1>LIST STUDENT</h1>
         </div>
-        <div class="search-section">
+        <form class="search-section" action="StudentController.jsp" method="GET">
+          <input type="hidden" name="action" value="list"/>
           <div class="search-selection">
             <label>search by</label>
-            <select id="search-by">
-              <option>Name</option>
-              <option>Admission Number</option>
+            <select id="search-by" name="option">
+              <option>All</option>
+              <option value="Class" ${param.option =='Class'?'selected':'' }>Class</option>
+              <option value="Place" ${param.option== 'Place'?'selected':''}>Place</option>
             </select>
           </div>
           <div class="search-bar">
-            <input type="text" value="" />
-            <button class="search-button"></button>
+            <input type="text" value="${param.inputValue}" name="inputValue" />
+            <button class="search-button" type=submit"></button>
           </div>
-        </div>
+        </form>
         <div class="main-content">
           <div class="search-results">
             <p>Search Results</p>
@@ -52,10 +59,25 @@
                 </tr>
               </thead>
               <tbody>
+                  <%
+                 if(al!=null)
+                 {
+                    for(int i=0;i<al.size();i++)
+                      {
+                      student=(model.Student)al.get(i);
+                      %>
+                  
                 <tr>
-                  <td>1</td>
-                  <td>Ajmal</td>
+                    <td><%=student.getAdmNum()%></td>
+                    <td><%=student.getName()%></td>
                 </tr>
+                
+                <%
+                    }
+                }
+                    %>
+                
+                
               </tbody>
             </table>
           </div>

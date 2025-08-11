@@ -233,12 +233,28 @@ section {
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  color:black;
 }
 
 .search-results tr:hover {
   background-color: #e6e6e6;
 }
-
+.search-results thead{
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.search-results tbody{
+  display: block;
+  height: 200px;
+  overflow-y: auto;
+  width: 100%;
+}
+.search-results tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
 .student-details {
   display: flex;
   flex-direction: column;

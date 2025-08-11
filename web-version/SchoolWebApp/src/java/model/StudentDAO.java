@@ -89,18 +89,19 @@ public class StudentDAO {
     // list student functions
     public ArrayList<Student> getListByClass(String cls) {
         ArrayList<Student> studentList = new ArrayList();
-        Student s = new Student();
+        
         try(
             Connection con = mc.setConnection();
             PreparedStatement ps = con.prepareStatement("SELECT * FROM students WHERE class LIKE '"+cls+"'");
             ResultSet rs = ps.executeQuery();                
             ){
             while(rs.next()){
-                        s.setAdmNum(rs.getInt("adm_num")) ;
-                        s.setName(rs.getString("name"));
-                        s.setClas(rs.getString("class"));
-                        s.setContact(rs.getString("contact"));
-                        s.setPlace(rs.getString("place"));                        
+                Student s = new Student();
+                s.setAdmNum(rs.getInt("adm_num")) ;
+                s.setName(rs.getString("name"));
+                s.setClas(rs.getString("class"));
+                s.setContact(rs.getString("contact"));
+                s.setPlace(rs.getString("place"));                        
                 studentList.add(s);
             }
             System.out.println("fetched data by place");  
@@ -114,18 +115,19 @@ public class StudentDAO {
 
     public ArrayList<Student> getListByPlace(String place) {
         ArrayList<Student> studentList = new ArrayList();
-        Student s = new Student();
+        
         try(
             Connection con = mc.setConnection();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM students WHERE LOWER(place) LIKE '%"+place.toLowerCase()+"%'");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM students WHERE LOWER(place) LIKE '"+place.toLowerCase()+"%' OR '%"+place.toLowerCase()+"'");
             ResultSet rs = ps.executeQuery();                
             ){
             while(rs.next()){
-                        s.setAdmNum(rs.getInt("adm_num")) ;
-                        s.setName(rs.getString("name"));
-                        s.setClas(rs.getString("class"));
-                        s.setContact(rs.getString("contact"));
-                        s.setPlace(rs.getString("place"));                        
+                Student s = new Student();
+                s.setAdmNum(rs.getInt("adm_num")) ;
+                s.setName(rs.getString("name"));
+                s.setClas(rs.getString("class"));
+                s.setContact(rs.getString("contact"));
+                s.setPlace(rs.getString("place"));                        
                 studentList.add(s);
             }
             System.out.println("fetched data by place");  
@@ -138,26 +140,23 @@ public class StudentDAO {
     }
 
     public ArrayList<Student> getAllList() {
-        ArrayList<Student> studentList = new ArrayList();
-        Student s = new Student();
+        ArrayList<Student> studentList = new ArrayList();       
         try(
             Connection con = mc.setConnection();
             PreparedStatement ps = con.prepareStatement("SELECT * FROM students");
             ResultSet rs = ps.executeQuery();                
             ){
             while(rs.next()){
-                        s.setAdmNum(rs.getInt("adm_num")) ;
-                        s.setName(rs.getString("name"));
-                        s.setClas(rs.getString("class"));
-                        s.setContact(rs.getString("contact"));
-                        s.setPlace(rs.getString("place"));                        
-                studentList.add(s);
-            }
-            
-        
-            }catch(Exception e){
-                System.out.println("Error: getAllList");
-        
+                    Student s = new Student();
+                    s.setAdmNum(rs.getInt("adm_num")) ;
+                    s.setName(rs.getString("name"));
+                    s.setClas(rs.getString("class"));
+                    s.setContact(rs.getString("contact"));
+                    s.setPlace(rs.getString("place"));                        
+                    studentList.add(s);
+            }        
+        }catch(Exception e){
+                System.out.println("Error: getAllList");        
             }
         return studentList;
     }
@@ -165,13 +164,14 @@ public class StudentDAO {
     //search students functions
     public ArrayList<Student> searchStudentByName(String name){
         ArrayList<Student> students = new ArrayList<>();
-        Student s = new Student();
+        
         try(
             Connection con = mc.setConnection();
             PreparedStatement ps = con.prepareStatement("SELECT * FROM students WHERE LOWER(name) LIKE '%"+name.toLowerCase()+"%'");
             ResultSet rs = ps.executeQuery();
             ){
             while(rs.next()){
+                        Student s = new Student();
                         s.setAdmNum(rs.getInt("adm_num")) ;
                         s.setName(rs.getString("name"));
                         s.setClas(rs.getString("class"));
