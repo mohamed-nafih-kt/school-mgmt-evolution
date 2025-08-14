@@ -6,7 +6,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search Student</title>
-    <link rel="stylesheet" href="search-student.css?12" />
+    <link rel="stylesheet" href="search-student.css?1" />
+    <script>
+        function setContentSearch(admNum){
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET","<%= request.getContextPath() %>/setContentSearchAction.jsp?adm="+ encodeURIComponent(admNum),true);
+//            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function(){
+                console.log(xhr.readyState);
+                console.log(xhr.status);
+                if(xhr.readyState === 4 && xhr.status === 200){
+                    if(xhr.responseText.trim() === "success"){
+                        alert("student is ajmal");
+                        document.getElementById("adm-field").textContent = "change";
+                    }
+            }
+        };
+        xhr.send();
+    }
+    </script>
   </head>
   <body>
     <header>
@@ -59,7 +77,7 @@
                    if(al!=null){ 
                     for(int i = 0;i< al.size();i++ ){ 
                     student =(model.Student) al.get(i);%>
-                <tr>
+                <tr onclick = "setContentSearch('<%= student.getAdmNum() %>')">
                     <td> <%= student.getAdmNum()%> </td>
                     <td> <%= student.getName() %> </td>
                 </tr>
@@ -71,25 +89,25 @@
           <div class="student-details">
             <div class="detail-group">
               <label>Name</label>
-              <input type="text" value="${students[0].name}"  readonly />
+              <input type="text" value="${students[0].name}" Id="name-field" readonly />
             </div>
             <div class="detail-group-row">
               <div class="detail-group small">
                 <label>Adm No.</label>
-                <input type="text" value="${students[0].admNum}" readonly />
+                <input type="text" value="${students[0].admNum}" Id="adm-field" readonly />
               </div>
               <div class="detail-group small">
                 <label>Class</label>
-                <input type="text"  value="${students[0].clas}" readonly />
+                <input type="text"  value="${students[0].clas}" Id="cls-field" readonly />
               </div>
             </div>
             <div class="detail-group">
               <label>Place</label>
-              <input type="text" value="${students[0].place}" readonly />
+              <input type="text" value="${students[0].place}" Id="place-field" readonly />
             </div>
             <div class="detail-group">
               <label>Contact</label>
-              <input type="text" value="${students[0].contact}" readonly />
+              <input type="text" value="${students[0].contact}" Id="contact-field" readonly />
             </div>
           </div>
           <div class="grid-item-3rd-column">

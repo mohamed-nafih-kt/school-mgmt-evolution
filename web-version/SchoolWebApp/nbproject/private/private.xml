@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/az/Desktop/learnJava/school-mgmt-evolution/web-version/SchoolWebApp/web/add-student.html</file>
+            <file>file:/Users/az/Desktop/learnJava/school-mgmt-evolution/web-version/SchoolWebApp/web/search-student.jsp</file>
             <file>file:/Users/az/Desktop/learnJava/school-mgmt-evolution/web-version/SchoolWebApp/web/StudentController.jsp</file>
             <file>file:/Users/az/Desktop/learnJava/school-mgmt-evolution/web-version/SchoolWebApp/src/java/model/StudentDAO.java</file>
-            <file>file:/Users/az/Desktop/learnJava/school-mgmt-evolution/web-version/SchoolWebApp/src/java/model/Student.java</file>
-            <file>file:/Users/az/Desktop/learnJava/school-mgmt-evolution/web-version/SchoolWebApp/web/META-INF/context.xml</file>
+            <file>file:/Users/az/Desktop/learnJava/school-mgmt-evolution/web-version/SchoolWebApp/web/setContentSearchAction.jsp</file>
         </group>
     </open-files>
 </project-private>

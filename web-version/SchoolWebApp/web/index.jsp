@@ -24,6 +24,7 @@
       </nav>
     </header>
     <section>
+      <a href="index2.jsp"><h1>INDEX 2</h1></a>
       <div class="container">
         <div class="student-count">
           <h2 id="total-student-count">${totalCount}</h2>

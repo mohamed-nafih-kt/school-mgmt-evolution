@@ -28,7 +28,7 @@
             String place = request.getParameter("place");
             String contact = request.getParameter("contact");
             int res = studentDAO.addStudent(name,clas,place, contact);
-            response.sendRedirect("add-student.jsp");
+
             break; }
             
         case "searchToRemove":{
@@ -123,8 +123,7 @@
                 }
             } else if (option.equals("Admission Number")) {
             try{
-                    students = studentDAO.searchStudentById(input); 
-                    
+                    students = studentDAO.searchStudentById(input);                     
                     request.setAttribute("students", students);
                     request.getRequestDispatcher("search-student.jsp").forward(request, response);
                     return;

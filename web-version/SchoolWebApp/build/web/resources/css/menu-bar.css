@@ -1,0 +1,52 @@
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-radius: 10px;
+  grid-column: 2/3;
+  padding-left: 20px;
+  padding-right: 10px;
+}
+.titlebar img {
+  background: var(--soft-gray);
+}
+
+.page-name {
+  font-size: 30px;
+}
+.right-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.notification a img{
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+.notification a img:hover{
+    background:gray;
+}
+.login-info {
+  display: flex;
+  width: 110px;
+  padding: 5px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  border: 1px solid rgb(173, 173, 173);
+  border-radius: 10px;
+}
+.login-info span {
+  font-size: 18px;
+  user-select: none;
+  pointer-events: none;
+}
+.login-info img {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+}
