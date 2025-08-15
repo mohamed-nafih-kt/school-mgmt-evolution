@@ -54,7 +54,7 @@
                             </div>
                             <% for (int i = 0; i < 10; i++) {%>
                             <div class="notice-content">
-                                <h4>Notice <%= i+2%></h4>
+                                <h4>Notice <%= i + 2%></h4>
                                 <p>This is notice is code generated. Lorem ipsum is the which eath serving along</p>
                                 <br />
                             </div>
@@ -62,7 +62,20 @@
                         </div>
                     </div>
 
-                    <div class="events"></div>
+                    <div class="events">
+                        <h2>EVENTS</h2>
+                        <div class="event-container">
+                            <% for (int i = 0; i < 10; i++) {%>
+                            <div class="event-content">
+                                <div class="event-title">
+                                    <img src="<%=imageDirectory%>time-line.png" alt="event icon"/>
+                                    <h4>Event <%=i + 2%></h4>
+                                </div>
+                                <p>This is notice is code generated. Lorem ipsum is the which eath serving along</p>
+                            </div>
+                            <% }%>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

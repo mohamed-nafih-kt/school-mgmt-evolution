@@ -1,5 +1,5 @@
 <% String imageDirectory = request.getContextPath() + "/resources/images/";%>   
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css?v=<%=System.currentTimeMillis()%>">
 <div class="sidebar">
     <div class="icon">
         <a href="">
@@ -26,17 +26,22 @@
             </li>
         </ul>
     </div>
+
     <div class="contact">
+
         <!-- add icon description -->
         <ul>
-            <li>
+            <li class="announcement">
+                <label class="icon-label">make announcement</label>
                 <a href=""><img src="<%=imageDirectory%>announcement.png" alt="" /></a>
             </li>
-            <li>
-                <a href=""><img src="<%=imageDirectory%>add-notice.png" alt="" /></a>
+            <li class="notice">
+                <label class="icon-label">add events</label>
+                <a href=""><img src="<%=imageDirectory%>add-ev.png" alt="" /></a>
             </li>
-            <li>
-                <a href=""><img src="<%=imageDirectory%>notification-sms.png" alt="" /></a>
+            <li class="notification">
+                <label class="icon-label">add notice</label>
+                <a href=""><img src="<%=imageDirectory%>message.png" alt="" /></a>
             </li>
         </ul>
     </div>

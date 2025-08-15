@@ -1,3 +1,15 @@
+:root {
+    --blue-color: rgb(20, 30, 50);
+    --secondary-blue: rgb(41, 64, 88);
+    --accent-blue: rgb(69, 104, 130);
+    --soft-gray: rgb(200, 210, 220);
+    --teal-blue: rgb(30, 120, 150);
+    --accent-green: rgb(85, 190, 140);
+    --accent-blue: rgb(80, 200, 250);
+
+    --glow-light: rgba(80, 200, 250, 0.7);
+    --glow-accent: rgba(69, 104, 130, 0.6);
+}
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -72,7 +84,6 @@
   display: inline-block;
   border: 1px solid rgb(77, 77, 77);
   border-radius: 10px;
-  /* background: rgb(200, 210, 220); */
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
 }
@@ -83,6 +94,26 @@
 }
 
 .contact ul li img {
-  height: 20px;
+  height: 25px;
   width: 25px;
+}
+
+.icon-label {
+    position: absolute;
+    pointer-events: none;
+    transform: translateY(-40px);
+    background:rgba(20, 30, 50, 0.4);
+    color: var(--soft-gray);
+    padding:5px;
+    display:none;
+}
+.announcement:hover .icon-label {
+    display: block;
+}
+.notice:hover .icon-label {
+    display: block;
+}
+.notification:hover .icon-label {
+    transform: translate(-60px,-40px);
+    display: block;
 }

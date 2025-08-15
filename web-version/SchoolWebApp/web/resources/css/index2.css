@@ -6,7 +6,7 @@
     --teal-blue: rgb(30, 120, 150);
     --accent-green: rgb(85, 190, 140);
     --accent-blue: rgb(80, 200, 250);
-
+    --my-violet:rgb(100,110,250);
     --glow-light: rgba(80, 200, 250, 0.7);
     --glow-accent: rgba(69, 104, 130, 0.6);
 }
@@ -68,10 +68,31 @@ body {
     background: white;
     border-radius: 10px;
 }
+
 .mark-analysis, .class-distribution {
+    position:relative;
     width: calc(50% - 5px);
     height: 100%;
     overflow: hidden;
+}
+.mark-analysis::after, .class-distribution::after {
+    position:absolute;
+    inset: 0;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    font-weight: normal;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: black;
+
+    content: "This is a static image";
 }
 .mark-analysis img,
 .class-distribution img {
@@ -125,22 +146,66 @@ body {
     margin:0;
 }
 .notice-container {
-    height: 100%;     
-    overflow-y: auto;  
-    overflow-x: hidden; 
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding-top: 5px;
-    
+
     mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
     mask-repeat: no-repeat;
     mask-size: 100% 100%;
 }
+
 .notice-content >*{
     margin:0;
     padding:0;
 }
 
-
+/* Events */
 .events {
+    display:flex;
+    flex-direction: column;
+    padding:10px;
     grid-row: 3/4;
     grid-column: 1/3;
+}
+.events > h2{
+    font-weight: normal;
+    padding:0;
+    margin:0;
+}
+.event-container {
+    height: 100%;
+    width:100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+
+    mask-image:linear-gradient(to bottom,transparent, black 5%);
+    mask-repeat:no-repeat;
+}
+.event-content{
+    background: rgb(from var(--my-violet) r g b / 0.2);
+    border-radius: 10px;
+    padding:10px;
+/*    min-height: 80px;*/
+}
+.event-title{
+    display:flex;
+    overflow:hidden;
+    align-items:center;
+    gap:10px;
+    margin-bottom: 5px;
+}
+.event-title h4,.event-content p{
+    margin:0;
+    padding:0;
+}
+
+.event-title img{
+    width:30px;
+    height:30px;
 }
