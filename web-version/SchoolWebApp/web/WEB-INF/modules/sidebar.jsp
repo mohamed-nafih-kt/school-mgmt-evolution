@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css?v=<%=System.currentTimeMillis()%>">
 <div class="sidebar">
     <div class="icon">
-        <a href="">
+        <a href="${pageContext.request.contextPath}/StudentController.jsp?action=${"home"}">
             <img src="<%=imageDirectory%>icon-education.png" alt="icon-education" />
             <span>School Management</span>
         </a>
@@ -33,15 +33,15 @@
         <ul>
             <li class="announcement">
                 <label class="icon-label">make announcement</label>
-                <a href=""><img src="<%=imageDirectory%>announcement.png" alt="" /></a>
+                <Button id="sidebar-announcement-btn"><img src="<%=imageDirectory%>announcement.png" alt="" /></Button>
             </li>
             <li class="notice">
                 <label class="icon-label">add events</label>
-                <a href=""><img src="<%=imageDirectory%>add-ev.png" alt="" /></a>
+                <Button id="sidebar-event-btn"><img src="<%=imageDirectory%>add-ev.png" alt="" /></Button>
             </li>
             <li class="notification">
                 <label class="icon-label">add notice</label>
-                <a href=""><img src="<%=imageDirectory%>message.png" alt="" /></a>
+                <Button id="sidebar-message-btn"><img src="<%=imageDirectory%>message.png" alt="" /></Button>
             </li>
         </ul>
     </div>

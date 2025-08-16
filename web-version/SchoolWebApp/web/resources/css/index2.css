@@ -138,12 +138,33 @@ body {
     grid-row: 2/4;
     grid-column: 3/4;
     padding:10px;
+    padding-top:20px;
     gap:10px;
 }
-.notice > h2{
+.notice h2{
+    margin:0;
+    padding:0;
+}
+
+.index-notice-content-header{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    height:30px;
+}
+.index-notice-content-header > h2{
     font-weight: normal;
     padding:0;
     margin:0;
+}
+.index-notice-content-header button{
+    font-size:15px;
+    background:white;
+    border:none;
+    cursor: pointer;
+}
+.index-notice-content-header button:hover{
+      color: rgb(255, 0, 0);
 }
 .notice-container {
     height: 100%;
@@ -160,6 +181,7 @@ body {
     margin:0;
     padding:0;
 }
+
 
 /* Events */
 .events {

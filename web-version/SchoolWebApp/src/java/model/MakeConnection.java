@@ -9,12 +9,11 @@ import javax.swing.JOptionPane;
 
 
 public final  class MakeConnection {
-    Connection setConnection(){
+    public Connection setConnection(){
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/school","root","password");
-            System.out.println("database connected");
         } catch (Exception ex) {
             System.out.println("Couldn't connect database: "+ ex.getMessage());
         }

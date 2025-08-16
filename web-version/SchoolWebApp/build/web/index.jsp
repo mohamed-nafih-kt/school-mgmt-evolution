@@ -20,11 +20,11 @@
           </li>
           <li><a href="search-student.jsp">Search Student</a></li>
           <li><a href="list-students.jsp">List Students</a></li>
+          <li><a href="StudentController.jsp?action=dashboard">New Dashboard</a></li>
         </ul>
       </nav>
     </header>
     <section>
-      <a href="index2.jsp"><h1>INDEX 2</h1></a>
       <div class="container">
         <div class="student-count">
           <h2 id="total-student-count">${totalCount}</h2>

@@ -1,4 +1,4 @@
-
+// This is called ENTITY
 package model;
 
 public class Student {

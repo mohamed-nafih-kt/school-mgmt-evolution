@@ -1,4 +1,5 @@
 <jsp:useBean id="studentDAO" class="model.StudentDAO"/>
+<jsp:useBean id="teacherDAO" class="model.TeacherDAO"/>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Student" %>
 <%@ page import="model.StudentDAO" %>
@@ -11,6 +12,14 @@
         return;
     }
     switch(action){
+        case "dashboard":{
+            int totalStudents = studentDAO.getTotalStudents();
+            int totalTeachers = teacherDAO.getTeachersCount();
+            System.out.println("Total teachers ="+totalTeachers);
+            request.setAttribute("teachersCount", totalTeachers);
+            request.setAttribute("totalCount",totalStudents);
+            request.getRequestDispatcher("index2.jsp").forward(request,response);
+        }
         case "home":{
             int totalStudents = studentDAO.getTotalStudents();
             int[] arr = studentDAO.getAttendance();

@@ -24,6 +24,7 @@
     </header>
     <div class="container">
       <h2>Add Student</h2>
+      
       <form class="student-form" action="StudentController.jsp" method="post">
         <!-- form submitted as action: add -->
         <input type="hidden" name="action" value="add" />

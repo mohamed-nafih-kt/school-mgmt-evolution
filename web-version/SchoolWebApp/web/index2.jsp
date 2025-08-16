@@ -9,7 +9,9 @@
         <link rel="stylesheet" href="<%= cssDirectory%>index2.css?v=<%=System.currentTimeMillis()%>" />
     </head>
     <body>
+
         <div class="main-content">
+            <jsp:include page="WEB-INF/modules/notice-form.jsp"/>
             <!-- module - sidebar -->
             <jsp:include page="/WEB-INF/modules/sidebar.jsp" />
 
@@ -31,30 +33,20 @@
                     <!-- counts -->
                     <div class="students-count">
                         <h3>Total Students</h3>
-                        <h2 class="count">9,999</h2>
+                        <h2 class="count">${totalCount}</h2>
                     </div>
                     <div class="teachers-count">
                         <h3>Total Teachers</h3>
-                        <h2 class="count">999</h2>
+                        <h2 class="count">${teachersCount}</h2>
                     </div>
 
                     <!-- notice -->
                     <div class="notice">
                         <h2>NOTICE</h2>
                         <div class="notice-container">
-                            <div class="notice-content">
-                                <h4>Important</h4>
-                                <p>This is the space to add notice</p>
-                                <br />
-                            </div>
-                            <div class="notice-content">
-                                <h4>Notice 1</h4>
-                                <p>This is the second notice</p>
-                                <br />
-                            </div>
                             <% for (int i = 0; i < 10; i++) {%>
                             <div class="notice-content">
-                                <h4>Notice <%= i + 2%></h4>
+                                <div class="index-notice-content-header"><h4>Notice <%= i + 2%></h4> <button>x</button></div>
                                 <p>This is notice is code generated. Lorem ipsum is the which eath serving along</p>
                                 <br />
                             </div>
@@ -80,4 +72,19 @@
             </div>
         </div>
     </body>
+    <script>
+        // index notice form
+        const addNoticeIcon = document.getElementById('sidebar-message-btn');
+        const closeButton = document.getElementById('notice-module-close-button');
+        const container = document.getElementById('notice-form-id');
+
+        addNoticeIcon.addEventListener('click', () => {
+            console.log("btn clicked");
+            container.classList.remove('hide');
+        });
+
+        closeButton.addEventListener('click', () => {
+            container.classList.add('hide');
+        });
+    </script>
 </html>
