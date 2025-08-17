@@ -37,7 +37,6 @@
             String place = request.getParameter("place");
             String contact = request.getParameter("contact");
             int res = studentDAO.addStudent(name,clas,place, contact);
-
             break; }
             
         case "searchToRemove":{

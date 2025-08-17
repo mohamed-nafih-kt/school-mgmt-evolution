@@ -4,7 +4,7 @@
     <div class="notice-form-container" id="notice-form">
         <div class="close"><button id="notice-module-close-button">X</button></div>
         <h2>NOTICE</h2>
-        <form action="${pageContext.request.contextPath}/actions/propAction.jsp" class="notice-form" method="POST">
+        <form method="POST" action="${pageContext.request.contextPath}/actions/propAction.jsp" class="notice-form" >
             <div class="title">
                 <label for="noticeTitle">Title</label>
                 <input type="text" name="noticeTitle"/>

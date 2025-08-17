@@ -86,5 +86,11 @@
         closeButton.addEventListener('click', () => {
             container.classList.add('hide');
         });
+</script>
+<c:if test="${not empty sessionScope.toastMessage}">
+    <script>
+        alert("${sessionScope.toastMessage}");
     </script>
+    <c:remove var="toastMessage" scope="session"/>
+</c:if>
 </html>

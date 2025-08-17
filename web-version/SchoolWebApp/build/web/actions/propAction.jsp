@@ -3,6 +3,7 @@
 <jsp:useBean id="studentDAO" class="model.StudentDAO"/>
 <jsp:useBean id="makeConnection" class="model.MakeConnection" />
 <jsp:useBean id="student" class="model.Student" />
+
 <%
     String title = request.getParameter("noticeTitle");
     String content =request.getParameter("noticeMessage");
@@ -15,10 +16,11 @@
         System.out.println("couldn't add notice. Error: "+e);
     }
     if(result>0){
-        request.getRequestDispatcher("/StudentController.jsp?action=dashboard").forward(request,response);
+//      response.getWriter().write("added notice to DB");   
+        request.getSession().setAttribute("toastMessage", "Notice added successfully!");
+        response.sendRedirect(request.getContextPath()+"/StudentController.jsp?action=dashboard");
     }
     else{
-    response.getWriter().write("failed");
+        request.getRequestDispatcher(request.getContextPath()+"/StudentController.jsp?action=dashboard").forward(request, response);
     }
-
 %>
