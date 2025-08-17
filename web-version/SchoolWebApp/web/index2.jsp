@@ -1,6 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% String cssDirectory = request.getContextPath() + "/resources/css/"; %>
-<% String imageDirectory = request.getContextPath() + "/resources/images/";%>
+<%@page import = "java.sql.PreparedStatement, java.sql.ResultSet" %>
+<jsp:useBean id="studentDAO" class="model.StudentDAO"/>
+<jsp:useBean id="teacherDAO" class="model.TeacherDAO"/>
+<jsp:useBean id="makeConnection" class="model.MakeConnection"/>
+<%
+    String cssDirectory = request.getContextPath() + "/resources/css/";
+    String imageDirectory = request.getContextPath() + "/resources/images/";
+    int totalStudents = studentDAO.getTotalStudents();
+    int totalTeachers = teacherDAO.getTeachersCount();
+    System.out.println("students = " + totalStudents + "| Teachers =" + totalTeachers);
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +42,7 @@
                     <!-- counts -->
                     <div class="students-count">
                         <h3>Total Students</h3>
-                        <h2 class="count">${totalCount}</h2>
+                        <h2 class="count"><%=totalStudents%></h2>
                     </div>
                     <div class="teachers-count">
                         <h3>Total Teachers</h3>
@@ -44,13 +53,26 @@
                     <div class="notice">
                         <h2>NOTICE</h2>
                         <div class="notice-container">
-                            <% for (int i = 0; i < 10; i++) {%>
+                            <%
+                                try (
+                                        PreparedStatement ps = makeConnection.setConnection().prepareStatement("SELECT * FROM notices"); ResultSet rs = ps.executeQuery();) {
+                                    while (rs.next()) {
+                                        String title = rs.getString("title");
+                                        String content = rs.getString("content");
+                            %>
                             <div class="notice-content">
-                                <div class="index-notice-content-header"><h4>Notice <%= i + 2%></h4> <button>x</button></div>
-                                <p>This is notice is code generated. Lorem ipsum is the which eath serving along</p>
+                                <div class="index-notice-content-header"><h4><%= title%></h4> <button>x</button></div>
+                                <p><%= content%></p>
                                 <br />
-                            </div>
-                            <% }%>
+                            </div>       
+                            <%
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("could'nt fetch data");
+                                }
+                            %>
+
+
                         </div>
                     </div>
 
@@ -86,11 +108,5 @@
         closeButton.addEventListener('click', () => {
             container.classList.add('hide');
         });
-</script>
-<c:if test="${not empty sessionScope.toastMessage}">
-    <script>
-        alert("${sessionScope.toastMessage}");
     </script>
-    <c:remove var="toastMessage" scope="session"/>
-</c:if>
 </html>

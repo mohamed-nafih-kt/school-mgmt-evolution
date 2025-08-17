@@ -83,27 +83,27 @@
                 request.getRequestDispatcher("remove-student.jsp").forward(request, response);
             }
             break;}
-//        case "edit": {
-//            String admNum = request.getParameter("adm_num");
-//            String name = request.getParameter("name");
-//            String clas = request.getParameter("class");
-//            String place = request.getParameter("place");
-//            String contact = request.getParameter("contact");
-//
-//            if (admNum == null || admNum.isEmpty()) {
-//                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing admission number");
-//                return;
-//            }
-//
-//            try {
-//                int admNumber = Integer.parseInt(admNum);
-//                int updateResult = studentDAO.editStudentDetails(admNumber, name, clas, place, contact);
-//                response.sendRedirect("list-students.jsp");
-//            } catch (NumberFormatException e) {
-//                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid admission number format");
-//            }
-//            break;
-//        }
+        case "edit": {
+            String admNum = request.getParameter("adm_num");
+            String name = request.getParameter("name");
+            String clas = request.getParameter("class");
+            String place = request.getParameter("place");
+            String contact = request.getParameter("contact");
+
+            if (admNum == null || admNum.isEmpty()) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing admission number");
+                return;
+            }
+
+            try {
+                int admNumber = Integer.parseInt(admNum);
+                int updateResult = studentDAO.editStudentDetails(admNumber, name, clas, place, contact);
+                response.sendRedirect("list-students.jsp");
+            } catch (NumberFormatException e) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid admission number format");
+            }
+            break;
+        }
         case "search": {
             
             // Fetch single student details by adm_num or by filters (name/place)

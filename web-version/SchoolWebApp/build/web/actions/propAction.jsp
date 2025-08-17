@@ -15,9 +15,7 @@
     }catch(Exception e){
         System.out.println("couldn't add notice. Error: "+e);
     }
-    if(result>0){
-//      response.getWriter().write("added notice to DB");   
-        request.getSession().setAttribute("toastMessage", "Notice added successfully!");
+    if(result>0){  
         response.sendRedirect(request.getContextPath()+"/StudentController.jsp?action=dashboard");
     }
     else{

@@ -202,5 +202,10 @@ public class StudentDAO {
         }
         return students;
     }
+    
+    //edit student function
+    public int editStudentDetails(int admNun, String name, String cls, String place,String contact){
+        return 0;
+    }
 
 }
