@@ -1,0 +1,126 @@
+:root {
+    --blue-color: rgb(20, 30, 50);
+    --secondary-blue: rgb(41, 64, 88);
+    --accent-blue: rgb(69, 104, 130);
+    --soft-gray: rgb(200, 210, 220);
+    --teal-blue: rgb(30, 120, 150);
+    --accent-green: rgb(85, 190, 140);
+    --accent-blue: rgb(80, 200, 250);
+    --my-violet:rgb(100,110,250);
+    --glow-light: rgba(80, 200, 250, 0.7);
+    --glow-accent: rgba(69, 104, 130, 0.6);
+}
+body {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+}
+.main-content {
+    display: grid;
+    grid-template-columns: minmax(2rem, 0.18fr) 0.82fr;
+    grid-template-rows: 60px 1fr;
+    background: var(--soft-gray);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 95vh;
+    overflow: hidden;
+    gap: 10px;
+    padding: 20px;
+}
+.main-content > * {
+    overflow: hidden;
+}
+
+
+/* specific to individual pages */
+/*  contents   */
+
+.contents {
+    padding:10px;
+    background: rgba(255, 255, 255, 0.6);
+    background-size: contain;
+    border-radius: 10px;
+    grid-row: 2/3;
+}
+
+.contents-container{
+    height: 97%;
+    padding:10px;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.contents-container > * {
+    background:white;
+    padding:10px;
+}
+.add-student-section{
+    display: flex;
+    justify-content: flex-end;
+}
+.add-student-section button{
+    padding:0 10px 0;
+    height:35px;
+    background: var(--secondary-blue);
+    color:white;
+    border-radius: 10px;
+    cursor: pointer;
+    border:none;
+    transition:all 0.3s ease-in-out;
+}
+.add-student-section button:hover {
+    height:35px;
+    background: var(--blue-color);
+    color:white;
+    border-radius: 10px;
+}
+.search-field-section{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search-bar{
+    display: flex;
+    align-items: center;
+    border:1px solid gray;
+    border-radius:10px;
+    padding:5px;
+    gap:5px;
+}
+.search-bar input{
+    width:180px;
+    height: 25px;
+    padding:0 5px 0;
+    border:none;
+    outline:none;
+    -webkit-appearance: none;
+}
+.search-filter select{
+    width:100px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.student-list-section{
+    height: 100%;
+    border:1px solid var(--soft-gray);
+}
+.student-table{
+    width: 100%;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.student-table thead tr{
+      border-bottom: 1px solid var(--soft-gray);
+}
+.student-table thead tr th {
+    padding-bottom: 5px;
+}

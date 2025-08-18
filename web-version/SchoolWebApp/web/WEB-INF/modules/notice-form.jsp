@@ -1,5 +1,5 @@
 <!-- notice form -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/notice-form.css?v=<%=System.currentTimeMillis()%>">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/notice-form.css?v=<%=System.currentTimeMillis()%>">
 <div class="notice-module-main-content hide" id="notice-form-id">
     <div class="notice-form-container" id="notice-form">
         <div class="close"><button id="notice-module-close-button">X</button></div>
@@ -19,3 +19,4 @@
         </form>
     </div>
 </div>
+

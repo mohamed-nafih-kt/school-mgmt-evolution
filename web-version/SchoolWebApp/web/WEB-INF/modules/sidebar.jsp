@@ -1,8 +1,8 @@
-<% String imageDirectory = request.getContextPath() + "/resources/images/";%>   
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css?v=<%=System.currentTimeMillis()%>">
+<% String imageDirectory = request.getContextPath() + "/images/";%>   
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/sidebar.css?v=<%=System.currentTimeMillis()%>">
 <div class="sidebar">
     <div class="icon">
-        <a href="${pageContext.request.contextPath}/StudentController.jsp?action=${"home"}">
+        <a href="${pageContext.request.contextPath}/index.jsp">
             <img src="<%=imageDirectory%>icon-education.png" alt="icon-education" />
             <span>School Management</span>
         </a>
@@ -10,20 +10,20 @@
     <div class="navbar-links">
         <ul>
             <li class="nav-link">
-                <a href=""><img src="<%= imageDirectory%>icon-student.png" alt="" /><span>Dashboard</span></a>
+                <a href="${pageContext.request.contextPath}/index.jsp"><img src="<%= imageDirectory%>icon-student.png" alt="" /><span>Dashboard</span></a>
             </li>
             <li class="nav-link">
-                <a href=""><img src="<%=imageDirectory%>icon-student.png" alt="" /><span>Students</span></a>
+                <a href="${pageContext.request.contextPath}/students"><img src="<%=imageDirectory%>icon-student.png" alt="" /><span>Students</span></a>
             </li>
             <li class="nav-link">
-                <a href=""><img src="<%=imageDirectory%>icon-student.png" alt="" /><span>Teachers</span></a>
+                <a href="${pageContext.request.contextPath}/teachers"><img src="<%=imageDirectory%>icon-student.png" alt="" /><span>Teachers</span></a>
             </li>
-            <li class="nav-link">
+<!--            <li class="nav-link">
                 <a href=""><img src="<%=imageDirectory%>icon-student.png" alt="" /><span>Classes</span></a>
             </li>
             <li class="nav-link">
                 <a href=""><img src="<%=imageDirectory%>icon-student.png" alt="" /><span>Reports</span></a>
-            </li>
+            </li>-->
         </ul>
     </div>
 
@@ -46,3 +46,18 @@
         </ul>
     </div>
 </div>
+<script>
+    //  notice form
+    const addNoticeIcon = document.getElementById('sidebar-message-btn');
+    const closeButton = document.getElementById('notice-module-close-button');
+    const container = document.getElementById('notice-form-id');
+
+    addNoticeIcon.addEventListener('click', () => {
+        console.log("btn clicked");
+        container.classList.remove('hide');
+    });
+
+    closeButton.addEventListener('click', () => {
+        container.classList.add('hide');
+    });
+</script>

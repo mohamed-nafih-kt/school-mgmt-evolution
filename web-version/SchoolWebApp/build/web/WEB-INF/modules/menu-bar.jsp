@@ -1,7 +1,7 @@
-<% String imageDirectory = request.getContextPath()+"/resources/images/";%> 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu-bar.css"/>
+<% String imageDirectory = request.getContextPath()+"/images/";%> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu-bar.css"/>
 <div class="titlebar">
-        <div class="page-name"><span>Dashboard</span></div>
+        <div class="page-name"><span>${pageTitle}</span></div>
         <div class="right-items">
           <div class="notification">
               <a href=""><img src="<%=imageDirectory%>notification.png" alt="notification-icon" /></a>
