@@ -57,11 +57,12 @@
                                 try (
                                         PreparedStatement ps = makeConnection.setConnection().prepareStatement("SELECT * FROM notices"); ResultSet rs = ps.executeQuery();) {
                                     while (rs.next()) {
+                                        int id = rs.getInt("id");
                                         String title = rs.getString("title");
                                         String content = rs.getString("content");
                             %>
                             <div class="notice-content">
-                                <div class="index-notice-content-header"><h4><%= title%></h4> <button>x</button></div>
+                                <div class="index-notice-content-header"><h4><%= title%></h4> <button onclick="deleteNotice(<%=id%>, this)">x</button></div>
                                 <p><%= content%></p>
                                 <br />
                             </div>       
@@ -108,5 +109,24 @@
         closeButton.addEventListener('click', () => {
             container.classList.add('hide');
         });
+    </script>
+    <!--delete row-->
+    <script>
+        function deleteNotice(id, row) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "actions/deleteNoticeAction.jsp", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          xhr.onreadystatechange = function() {
+                if (xhr.status === 200 && xhr.readyState === 4) {
+                    if (xhr.responseText.trim() === "success") {
+                        row.parentNode.parentNode.remove();
+                    } else {
+                        alert("Failed to delete Notice : "+xhr.responseText);
+                    }
+                }
+            }
+            ;
+            xhr.send("id=" + encodeURIComponent(id));
+        }
     </script>
 </html>
