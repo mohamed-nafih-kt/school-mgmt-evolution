@@ -26,9 +26,9 @@
 
             <!-- module - contents -->
             <div class="contents">
-                <div class="contents-container">
+                <div class="contents-container active" id="info">
                     <div class="add-student-section">
-                        <button>Register Student</button>
+                        <a href="#register" id="toggleRegister">Register Student</a>
                     </div>
                     <div class="search-field-section">
                         <div class="search-bar">
@@ -54,6 +54,7 @@
                                     <th>Class</th>
                                     <th>Contact</th>
                                     <th>Place</th>
+                                    <th> </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,7 +64,64 @@
 
                     </div>
                 </div>
+                            
+                <!-- student registration -->
+                <div id="register" class="register-student-section">
+                    <h1>Student Registration</h1>
+                    <form action="" class="student-registration-form">
+                        <div class="personal-information">
+                            <h3>Personal Information</h3>
+                            <div class="student-form-item">
+                                <label for="">Admission Number</label>
+                                <input type="text" placeholder="auto generated" readonly>
+                            </div>
+                            <div class="student-form-item">
+                                <label for="">Name</label>
+                                <input type="text">
+                            </div>
+                            <div class="student-form-item">
+                                <label for="">Class</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="contact-information">
+                            <h3>Contact Information</h3>
+                            <div class="student-form-item">
+                                <label for="">Phone Number</label>
+                                <input type="text" placeholder="+91-xxxxxxxxxx">
+                            </div>
+                            <div class="student-form-item">
+                                <label for="">Place</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="student-register-actions">
+                        <a href="#info" id="toggleInfo">Cancel</a>
+                        <button type="submit">Submit</button>
+                    </div>
+                </div>
             </div>
     </body>
+    <script>
+        document.getElementById('toggleRegister').addEventListener('click', () => {
+            
+            const info = document.getElementById('info');
+            const register = document.getElementById('register');
+            register.classList.add('active');
+            info.classList.remove('active');
+            register.scrollIntoView({behaviour: 'smooth'});
+        });
+
+        document.getElementById('toggleInfo').addEventListener('click', () => {
+        const info = document.getElementById('info');
+        const register = document.getElementById('register');
+        register.classList.remove('active');
+        info.classList.add('active');
+        info.scrollIntoView({behaviour: 'smooth'});
+        }
+        );
+
+    </script>
 
 </html>
