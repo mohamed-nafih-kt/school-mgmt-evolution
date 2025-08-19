@@ -16,8 +16,9 @@ public class StudentDAO {
     // index page functions
     public int getTotalStudents() {
         try (
-                PreparedStatement ps = mc.setConnection().prepareStatement("SELECT COUNT(*) FROM students");) {
+            PreparedStatement ps = mc.setConnection().prepareStatement("SELECT COUNT(*) FROM students"); 
             ResultSet rs = ps.executeQuery();
+            ){
             if (rs.next()) {
                 return rs.getInt(1);
             }
@@ -59,8 +60,7 @@ public class StudentDAO {
     //add students functions
     public int addStudent(String name, String clas, String place, String contact) {
         try (
-            PreparedStatement ps = mc.setConnection().prepareStatement("INSERT INTO students (name,class,place,contact) VALUES ('" + name + "','" + clas + "','" + place + "','" + contact + "')");) 
-        {
+                PreparedStatement ps = mc.setConnection().prepareStatement("INSERT INTO students (name,class,place,contact) VALUES ('" + name + "','" + clas + "','" + place + "','" + contact + "')");) {
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("added students");
@@ -204,9 +204,9 @@ public class StudentDAO {
         }
         return students;
     }
-    
+
     //edit student function
-    public int editStudentDetails(int admNun, String name, String cls, String place,String contact){
+    public int editStudentDetails(int admNun, String name, String cls, String place, String contact) {
         return 0;
     }
 
