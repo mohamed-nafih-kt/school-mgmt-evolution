@@ -1,27 +1,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import = "java.sql.PreparedStatement, java.sql.ResultSet" %>
-<jsp:useBean id="studentDAO" class="dao.StudentDAO"/>
-<jsp:useBean id="teacherDAO" class="dao.TeacherDAO"/>
-<jsp:useBean id="makeConnection" class="connections.MakeConnection"/>
+<%@page import = "java.sql.PreparedStatement, java.sql.ResultSet, java.util.ArrayList" %>
+<%@page import="model.Notice" %>
 <%
     String cssDirectory = request.getContextPath() + "/css/";
-    String imageDirectory = request.getContextPath() + "/images/";
-    int totalStudents = studentDAO.getTotalStudents();
-    int totalTeachers = teacherDAO.getTeachersCount();
-    System.out.println("students = " + totalStudents + "| Teachers =" + totalTeachers);
+    String imageDirectory =request.getContextPath() +"/images/";
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Dashboard</title>
-        <link rel="stylesheet" href="<%= cssDirectory%>index.css?v=<%=System.currentTimeMillis()%>" />
-        
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css?v=<%=System.currentTimeMillis()%>" />
     </head>
     <body>
 
         <div class="main-content">
-            <jsp:include page="WEB-INF/modules/notice-form.jsp"/>
+            <jsp:include page="/WEB-INF/modules/notice-form.jsp" />
             <!-- module - sidebar -->
             <jsp:include page="/WEB-INF/modules/sidebar.jsp" />
 
@@ -43,7 +37,7 @@
                     <!-- counts -->
                     <div class="students-count">
                         <h3>Total Students</h3>
-                        <h2 class="count"><%=totalStudents%></h2>
+                        <h2 class="count"><%= request.getAttribute("studentsCount") %></h2>
                     </div>
                     <div class="teachers-count">
                         <h3>Total Teachers</h3>
@@ -55,22 +49,22 @@
                         <h2>NOTICE</h2>
                         <div class="notice-container">
                             <%
-                                try (
-                                        PreparedStatement ps = makeConnection.setConnection().prepareStatement("SELECT * FROM notices"); ResultSet rs = ps.executeQuery();) {
-                                    while (rs.next()) {
-                                        int id = rs.getInt("id");
-                                        String title = rs.getString("title");
-                                        String content = rs.getString("content");
+                                ArrayList<Notice> noticeList = (ArrayList) request.getAttribute("notices");                                
+                                for (Notice notice : noticeList) {
+                                    int id = notice.getId();
+                                    String title = notice.getTitle();
+                                    String content = notice.getContent();
                             %>
                             <div class="notice-content">
-                                <div class="index-notice-content-header"><h4><%= title%></h4> <button onclick="deleteNotice(<%=id%>, this)">x</button></div>
+                                <div class="index-notice-content-header"><h4><%= title%></h4> 
+                                    <button onclick="deleteNotice(<%=id%>, this)">
+                                        <img src="<%=imageDirectory%>/delete.png" alt="delete"/>
+                                    </button>
+                                </div>
                                 <p><%= content%></p>
                                 <br />
                             </div>       
                             <%
-                                    }
-                                } catch (Exception e) {
-                                    System.out.println("could'nt fetch data");
                                 }
                             %>
 
@@ -89,15 +83,28 @@
                                 </div>
                                 <p>This is notice is code generated. Lorem ipsum is the which eath serving along</p>
                             </div>
-                            <% }%>
+                            <% }%>         
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <script>
-
+            function deleteNotice(id, row){
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "DeleteNotice" ,true);
+                xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function (){
+                    if(xhr.readyState===4 && xhr.status === 200){
+                        if(xhr.responseText === "success"){
+                            row.parentNode.parentNode.remove();
+                        }else{
+                            alert("couldn't Delete Notice");
+                        }
+                    }
+                };
+            xhr.send("id=" + encodeURIComponent(id));
+            }
         </script>
     </body>
 </html>

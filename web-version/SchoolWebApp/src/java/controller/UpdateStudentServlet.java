@@ -1,5 +1,6 @@
 package controller;
 
+import dao.StudentDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -8,14 +9,30 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "TeachersController", urlPatterns = {"/teachers"})
-public class TeachersController extends HttpServlet {
+
+@WebServlet(name = "UpdateStudentServlet", urlPatterns = {"/UpdateStudentServlet"})
+public class UpdateStudentServlet extends HttpServlet {
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setAttribute("pageTitle", "Teachers");
-        request.getRequestDispatcher("/WEB-INF/views/teachers.jsp").forward(request,response);
+        
+        int admNum = Integer.parseInt(request.getParameter("admNum"));
+        String name = (String) request.getParameter("name");
+        String cls = (String) request.getParameter("cls");
+        String phone = (String) request.getParameter("phone");
+        String place = (String) request.getParameter("place");
+        
+        StudentDAO studentDao = new StudentDAO();
+        
+        int result = studentDao.updateStudent(admNum, name, cls, place, phone);
+        request.setAttribute("result",result);
+        if(result > 0){
+            response.sendRedirect("students");
+        }else{
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "couldn't update");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

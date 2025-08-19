@@ -8,14 +8,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "TeachersController", urlPatterns = {"/teachers"})
-public class TeachersController extends HttpServlet {
+@WebServlet(name = "NoticeController", urlPatterns = {"/notice"})
+public class NoticeController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setAttribute("pageTitle", "Teachers");
-        request.getRequestDispatcher("/WEB-INF/views/teachers.jsp").forward(request,response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

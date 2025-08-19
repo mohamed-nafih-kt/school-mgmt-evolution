@@ -7,15 +7,26 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Student;
+import dao.StudentDAO;
 
-@WebServlet(name = "TeachersController", urlPatterns = {"/teachers"})
-public class TeachersController extends HttpServlet {
+@WebServlet(name = "UpdateStudentsDetails", urlPatterns = {"/UpdateStudent"})
+public class UpdateStudentsDetailsController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setAttribute("pageTitle", "Teachers");
-        request.getRequestDispatcher("/WEB-INF/views/teachers.jsp").forward(request,response);
+
+        StudentDAO studentDao = new StudentDAO();
+
+        int admNum = Integer.parseInt(request.getParameter("admNum"));
+        
+        Student student = studentDao.getStudent(admNum);
+      
+        request.setAttribute("student", student);
+        request.setAttribute("pageTitle", "Update Student Details");
+        request.getRequestDispatcher("/WEB-INF/views/updateStudentDetails.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

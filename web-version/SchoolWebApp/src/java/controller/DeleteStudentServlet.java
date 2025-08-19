@@ -1,21 +1,24 @@
 package controller;
 
+import dao.StudentDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "TeachersController", urlPatterns = {"/teachers"})
-public class TeachersController extends HttpServlet {
+
+@WebServlet(name = "DeleteStudentServlet", urlPatterns = {"/DeleteStudent"})
+public class DeleteStudentServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setAttribute("pageTitle", "Teachers");
-        request.getRequestDispatcher("/WEB-INF/views/teachers.jsp").forward(request,response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        StudentDAO studentDao = new StudentDAO();
+        String result = studentDao.removeStudent(id);
+        response.getWriter().write(result);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

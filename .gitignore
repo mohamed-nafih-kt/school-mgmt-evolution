@@ -2,3 +2,4 @@
 .DS_Store
 .history
 *.DS_Store
+/web-version/SchoolWebApp/dist/

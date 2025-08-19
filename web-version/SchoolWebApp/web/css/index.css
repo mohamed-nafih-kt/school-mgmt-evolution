@@ -160,13 +160,19 @@ body {
     margin:0;
 }
 .index-notice-content-header button{
-    font-size:15px;
+    border-radius: 2px;
+    padding:0;
     background:white;
     border:none;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.index-notice-content-header button img{
+    height: 20px;
+    width:20px;
 }
 .index-notice-content-header button:hover{
-      color: rgb(255, 0, 0);
+    background:rgba(72, 58, 137, 0.2);
 }
 .notice-container {
     height: 100%;
