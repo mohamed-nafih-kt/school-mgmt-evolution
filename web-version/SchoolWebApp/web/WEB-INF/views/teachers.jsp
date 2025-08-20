@@ -28,7 +28,7 @@
             <div class="contents">
                 <div class="contents-container">
                     <div class="add-teacher-section">
-                        <button>+ Add Teacher</button>
+                        <button onclick="addTeacher()">+ Add Teacher</button>
                     </div>
                     <div class="search-field-section">
                         <div class="search-bar">
@@ -64,4 +64,9 @@
                 </div>
             </div>
     </body>
+    <script>
+                function addTeacher() {
+            window.location.href = "AddTeacher";
+        }
+    </script>
 </html>

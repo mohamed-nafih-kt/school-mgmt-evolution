@@ -1,0 +1,152 @@
+:root {
+    --blue-color: rgb(20, 30, 50);
+    --secondary-blue: rgb(41, 64, 88);
+    --accent-blue: rgb(69, 104, 130);
+    --soft-gray: rgb(200, 210, 220);
+    --teal-blue: rgb(30, 120, 150);
+    --accent-green: rgb(85, 190, 140);
+    --accent-blue: rgb(80, 200, 250);
+    --my-violet: rgb(100, 110, 250);
+    --glow-light: rgba(80, 200, 250, 0.7);
+    --glow-accent: rgba(69, 104, 130, 0.6);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: minmax(2rem, 0.18fr) 0.82fr;
+    grid-template-rows: 60px 1fr;
+    background: var(--soft-gray);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 95vh;
+    overflow: hidden;
+    gap: 10px;
+    padding: 20px;
+}
+
+.main-content > * {
+    overflow: hidden;
+}
+
+/* contents */
+.contents {
+    position: relative;
+    display: flex;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    grid-row: 2/3;
+}
+
+/* Register New Teacher */
+
+.register-teacher-section {
+    display: flex;
+    width:100%;
+    flex-direction: column;
+    background: white;
+    padding:10px;
+    border-radius: 10px;
+}
+
+.teacher-registration-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 30px;
+}
+
+.personal-information, .contact-information {
+    display: flex;
+    height: 50%;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.personal-information h3, .contact-information h3 {
+    background: var(--blue-color);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 0;
+}
+
+.teacher-form-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 40px;
+    gap: 5px;
+}
+
+.teacher-form-item label {
+    grid-column: 1;
+    display: flex;
+    align-self: end;
+    font-size: 20px;
+}
+
+.teacher-form-item input {
+    font-size: 18px;
+    align-self: end;
+    grid-column: 2;
+    border: none;
+    border-bottom: 1px solid var(--soft-gray);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.teacher-form-item input:focus {
+    border-bottom: 1px solid var(--secondary-blue);
+}
+
+.teacher-register-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.teacher-register-actions button {
+    font-size: 18px;
+    font-family: sans-serif;
+    font-style: normal;
+    cursor: pointer;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--soft-gray);
+    height: 60px;
+    width: 140px;
+    padding: 10px;
+    background: rgba(41, 64, 88, 0.4);
+}
+
+.teacher-register-actions button:hover {
+    color: white;
+    background: rgba(41, 64, 88, 0.8);
+}
+
+.teacher-register-actions .cancel-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.teacher-register-actions .cancel-button:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.4);
+}
