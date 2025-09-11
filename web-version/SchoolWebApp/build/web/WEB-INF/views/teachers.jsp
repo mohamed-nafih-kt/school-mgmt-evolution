@@ -1,5 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import = "java.sql.PreparedStatement, java.sql.ResultSet" %>
+<%@ page import="java.sql.*" %>
 <jsp:useBean id="studentDAO" class="dao.StudentDAO"/>
 <jsp:useBean id="teacherDAO" class="dao.TeacherDAO"/>
 <jsp:useBean id="makeConnection" class="connections.MakeConnection"/>
@@ -56,16 +57,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            <h2>Numbers</h2>
+                            <tr>
+                                <td>
+                                    <c:if test="${1 + 1 == 2}">
+                                        works
+                                    </c:if>
+                                <td>
+                            </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
     </body>
     <script>
-                function addTeacher() {
+        function addTeacher() {
             window.location.href = "AddTeacher";
         }
     </script>

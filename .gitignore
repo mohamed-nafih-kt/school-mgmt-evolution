@@ -1,5 +1,14 @@
-# Ignore OS junk
+# OS files
 .DS_Store
-.history
 *.DS_Store
-/web-version/SchoolWebApp/dist/
+.history
+*.history
+
+# IntelliJ
+.idea/
+*.iml
+
+# NetBeans
+nbproject/private/
+build/
+dist/
