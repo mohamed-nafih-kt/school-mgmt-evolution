@@ -60,6 +60,7 @@ As a result, the codebase reflects experimentation, refactoring, and evolution.
 #### Demo Video
 
 <p align="center">
+  https://github.com/user-attachments/assets/7cd5848d-9019-472c-83ff-59ff48e1b2f9
   <a href="screenshots/web-record.mp4">
     <img src="screenshots/video-thumbnail.png" width="700" alt="Web application demo video">
   </a>
