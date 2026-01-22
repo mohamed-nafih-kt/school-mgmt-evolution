@@ -18,6 +18,7 @@
 out/
 
 # NetBeans
+web-version/SchoolWebApp/nbproject/private/
 nbproject/private/
 nbbuild/
 dist/
