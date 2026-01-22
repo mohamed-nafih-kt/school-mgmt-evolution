@@ -49,20 +49,37 @@ As a result, the codebase reflects experimentation, refactoring, and evolution.
 
 ### Web Application
 
-<img src="screenshots/web-home.png" width="400" alt="web-app home page">
-<img src="screenshots/web-students.png" width="400" alt="web-app students page">
+<p align="center">
+  <img src="screenshots/web-home.png" width="700" alt="Web application home page">
+</p>
+
+<p align="center">
+  <img src="screenshots/web-students.png" width="700" alt="Web application students page">
+</p>
 
 #### Demo Video
 
-<a href="media/web-demo.mp4">
-    <img src="screenshots/video-thumbnail.png" width="400">
-</a>
+<p align="center">
+  <a href="screenshots/web-record.mp4">
+    <img src="screenshots/video-thumbnail.png" width="700" alt="Web application demo video">
+  </a>
+</p>
+
+---
 
 ### Desktop Application
 
-<img src="screenshots/desktop-login.png" width="300" height="190" alt="desktop login">
-<img src="screenshots/desktop-home.png" width="300" height="190" alt="desktop home">
-<img src="screenshots/desktop-search.png" width="300" height="190" alt="desktop students">
+<p align="center">
+  <img src="screenshots/desktop-login.png" width="500" alt="Desktop application login screen">
+</p>
+
+<p align="center">
+  <img src="screenshots/desktop-home.png" width="500" alt="Desktop application home screen">
+</p>
+
+<p align="center">
+  <img src="screenshots/desktop-search.png" width="500" alt="Desktop application student search screen">
+</p>
 
 ## Tech Stack
 
