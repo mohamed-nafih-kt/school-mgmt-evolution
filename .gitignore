@@ -1,14 +1,69 @@
-# OS files
+# =========================
+# OS / System files
+# =========================
 .DS_Store
-*.DS_Store
+.AppleDouble
+.LSOverride
 .history
 *.history
 
-# IntelliJ
+# =========================
+# IDE files
+# =========================
+
+# IntelliJ IDEA
 .idea/
 *.iml
+*.iws
+out/
 
 # NetBeans
 nbproject/private/
-build/
+nbbuild/
 dist/
+build/
+nbdist/
+.nb-gradle/
+
+# Eclipse (in case project was opened)
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# =========================
+# Java / Build artifacts
+# =========================
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+
+# =========================
+# Temporary / Runtime files
+# =========================
+tmp/
+temp/
+*.tmp
+*.swp
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+
+# =========================
+# Optional: Database dumps
+# =========================
+*.sql
+
+# =========================
+# Ignore generated resources
+# =========================
+target/

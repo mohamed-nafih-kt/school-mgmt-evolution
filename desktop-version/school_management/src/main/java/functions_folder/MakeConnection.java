@@ -17,7 +17,7 @@ public final  class MakeConnection {
     
     static Connection setConnection(){
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/school","root","password");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/school_management","<username>","<password>");
             System.out.println("database connected");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Couldn't connect to database","DB Error",JOptionPane.INFORMATION_MESSAGE);
