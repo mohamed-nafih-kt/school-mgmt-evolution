@@ -8,6 +8,18 @@
 *.history
 
 # =========================
+# Desktop app (Maven)
+# =========================
+desktop-version/**/target/
+
+# =========================
+# Web app (NetBeans)
+# =========================
+web-version/**/build/
+web-version/**/dist/
+web-version/**/nbproject/private/
+
+# =========================
 # IDE files
 # =========================
 
